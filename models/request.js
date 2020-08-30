@@ -26,7 +26,6 @@ const requestSchema = new mongoose.Schema({
   counter: {
     type: Number,
     required: true,
-    default: 0,
   },
 });
 
