@@ -9,7 +9,6 @@ router.get("/", async function (
   res,
   next
 ) {
-    // Return the parameters corresponding to the most used request, as well as the number of hits for this request
     res.send(await statsHandler());
 });
 
