@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('connected to database'));
+db.once('open', () => console.log('Db connected successfully to server!'));
 
 app.use('/', indexRouter);
 app.use('/customisedBuzzFeed', customisedBuzzFeedRouter);

@@ -35,7 +35,7 @@ router.get("/int/:int1/:int2/:limit/str/:str1/:str2/", async function (
   }
 
   res.send(
-    await customisedBuzzFeedHandler(
+    customisedBuzzFeedHandler(
       parseInt(req.params.int1),
       parseInt(req.params.int2),
       parseInt(req.params.limit),

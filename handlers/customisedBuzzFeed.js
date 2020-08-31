@@ -8,7 +8,6 @@
 module.exports = function compute(int1, int2, limit, str1, str2) {
   // validation
   // gestion d'erreur
-
   let list = [];
 
   for (let i = 1; i < limit; i++) {
@@ -22,6 +21,5 @@ module.exports = function compute(int1, int2, limit, str1, str2) {
       list.push(i);
     }
   }
-  console.log("list", list);
   return list.toString();
 };
