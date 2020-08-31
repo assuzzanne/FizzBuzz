@@ -11,20 +11,70 @@ router.get("/int/:int1/:int2/:limit/str/:str1/:str2/", async function (
   res,
   next
 ) {
-  // Accepts five parameters : three integers int1, int2 and limit, and two strings str1 and str2.
   // to optimise
 
-  // const result = customisedBuzzFeedHandler(
-  //   parseInt(req.params.int1),
-  //   parseInt(req.params.int2),
-  //   parseInt(req.params.limit),
-  //   req.params.str1,
-  //   req.params.str2
-  // );
-  // res.send(result);
-  // validation ?
+  //   var query = {},
+  //   update = { expire: new Date() },
+  //   options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
-  const foundRequest = await Request.find({
+  // // Find the document
+  // Model.findOneAndUpdate(query, update, options, function(error, result) {
+  //   if (error) return;
+
+  //   // do something with the document
+  // });
+
+  try {
+    const request = await Request.findOneAndUpdate(
+      {
+        params: {
+          int1: req.params.int1,
+          int2: req.params.int2,
+          limit: req.params.limit,
+          str1: req.params.str1,
+          str2: req.params.str2,
+        },
+      },
+      { $inc: { counter: 1 } },
+      {
+        upsert: true,
+        new: true,
+        setDefaultsOnInsert: true,
+      }
+    );
+    console.log("Request saved or updated successfully!", request);
+  } catch (err) {
+    console.error("Failed to save or update request!", err.message);
+  }
+
+  /*   const request = await Request.findOneAndUpdate(
+    {
+      params: {
+        int1: req.params.int1,
+        int2: req.params.int2,
+        limit: req.params.limit,
+        str1: req.params.str1,
+        str2: req.params.str2,
+      },
+    },
+    {},
+    {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true,
+      useFindAndModify: false,
+    },
+    function (error, request) {
+      console.log('request before if', request);
+        request.counter = ++request.counter;
+        request.save();
+        console.log("Request saved or updated successfully!", request);
+      if (error)
+        console.error("Failed to save or update request!", err.message);
+    }
+  ); */
+
+  /*   const foundRequest = await Request.find({
     params: {
       int1: req.params.int1,
       int2: req.params.int2,
@@ -33,8 +83,7 @@ router.get("/int/:int1/:int2/:limit/str/:str1/:str2/", async function (
       str2: req.params.str2,
     },
   });
-  console.log("foundRequest", foundRequest);
-
+  
   if (foundRequest.length == 0) {
     const request = new Request({
       params: {
@@ -48,27 +97,26 @@ router.get("/int/:int1/:int2/:limit/str/:str1/:str2/", async function (
     });
     try {
       const newRequest = await request.save();
-      // res.status(201).json(newRequest);
+      console.log("New request saved successfully!", newRequest);
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      console.error("Request to save new request failed!", err.message);
     }
   } else {
     let [{ params, counter }] = foundRequest;
-    
+
     try {
       const updatedRequest = await Request.updateOne(
         { params: params },
         { counter: ++counter }
       );
-      // res.status(201).json(updatedCounter);
+      console.log("Counter updated successfully!", updatedRequest);
     } catch (err) {
-      //res.status(400).json({ message: err.message });
-      console.error(err, "Request to update counter failed!");
+      console.error("Request to update counter failed!", err.message);
     }
   }
-
+ */
   res.send(
-    customisedBuzzFeedHandler(
+    await customisedBuzzFeedHandler(
       parseInt(req.params.int1),
       parseInt(req.params.int2),
       parseInt(req.params.limit),
