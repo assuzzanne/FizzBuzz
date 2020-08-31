@@ -34,15 +34,17 @@ router.get("/int/:int1/:int2/:limit/str/:str1/:str2/", async function (
     console.error("Failed to create or update request!", err.message);
   }
 
-  res.send(
-    customisedBuzzFeedHandler(
-      parseInt(req.params.int1),
-      parseInt(req.params.int2),
-      parseInt(req.params.limit),
-      req.params.str1,
-      req.params.str2
-    )
-  );
+  res
+    .status(200)
+    .send(
+      customisedBuzzFeedHandler(
+        parseInt(req.params.int1),
+        parseInt(req.params.int2),
+        parseInt(req.params.limit),
+        req.params.str1,
+        req.params.str2
+      )
+    );
 });
 
 module.exports = router;
