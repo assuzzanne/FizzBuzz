@@ -12,6 +12,34 @@ describe("customisedFizzBuzz", () => {
   });
 
   describe("/GET route", () => {
+    it("it should fail if a parameter is missing", async () => {
+      const req = {
+        params: {
+          int1: "3",
+          int2: "5",
+          limit: "50",
+          str1: "pomodoro",
+        },
+      };
+
+      const res = await chai
+        .request(app)
+        .get(
+          "/customisedFizzBuzz/" +
+            req.params.int1 +
+            "/" +
+            req.params.int2 +
+            "/" +
+            req.params.limit +
+            "/" +
+            req.params.str1
+        )
+        .send();
+
+      chai.assert.equal(res.status, 404);
+      chai.expect(res.clientError, true);
+    });
+    
     it("it should return a list of strings", async () => {
       const req = {
         params: {
