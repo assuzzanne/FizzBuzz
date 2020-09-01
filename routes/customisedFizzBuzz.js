@@ -3,10 +3,10 @@ const router = express.Router();
 
 const Request = require("../models/request");
 
-const customisedBuzzFeedHandler = require("../handlers/customisedBuzzFeed");
+const customisedFizzBuzzHandler = require("../handlers/customisedFizzBuzz");
 
 /* Get params and call computing function from handler */
-router.get("/int/:int1/:int2/:limit/str/:str1/:str2/", async function (
+router.get("/:int1/:int2/:limit/:str1/:str2/", async function (
   req,
   res,
   next
@@ -37,7 +37,7 @@ router.get("/int/:int1/:int2/:limit/str/:str1/:str2/", async function (
   res
     .status(200)
     .send(
-      customisedBuzzFeedHandler(
+      customisedFizzBuzzHandler(
         parseInt(req.params.int1),
         parseInt(req.params.int2),
         parseInt(req.params.limit),

@@ -9,7 +9,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
-const customisedBuzzFeedRouter = require('./routes/customisedBuzzFeed');
+const customisedFizzBuzzRouter = require('./routes/customisedFizzBuzz');
 const statsRouter = require('./routes/stats');
 
 // view engine setup
@@ -29,7 +29,7 @@ db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Db connected successfully to server!'));
 
 app.use('/', indexRouter);
-app.use('/customisedBuzzFeed', customisedBuzzFeedRouter);
+app.use('/customisedFizzBuzz', customisedFizzBuzzRouter);
 app.use('/stats', statsRouter);
 
 // catch 404 and forward to error handler
