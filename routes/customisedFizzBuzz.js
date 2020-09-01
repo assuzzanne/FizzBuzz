@@ -6,11 +6,7 @@ const Request = require("../models/request");
 const customisedFizzBuzzHandler = require("../handlers/customisedFizzBuzz");
 
 /* Get params and call computing function from handler */
-router.get("/:int1/:int2/:limit/:str1/:str2/", async function (
-  req,
-  res,
-  next
-) {
+router.get("/:int1/:int2/:limit/:str1/:str2/", async function (req, res, next) {
   try {
     const query = {
       params: {
@@ -34,17 +30,15 @@ router.get("/:int1/:int2/:limit/:str1/:str2/", async function (
     console.error("Failed to create or update request!", err.message);
   }
 
-  res
-    .status(200)
-    .send(
-      customisedFizzBuzzHandler(
-        parseInt(req.params.int1),
-        parseInt(req.params.int2),
-        parseInt(req.params.limit),
-        req.params.str1,
-        req.params.str2
-      )
-    );
+  const result = customisedFizzBuzzHandler(
+    parseInt(req.params.int1),
+    parseInt(req.params.int2),
+    parseInt(req.params.limit),
+    req.params.str1,
+    req.params.str2
+  );
+
+  res.status(200).send(result);
 });
 
 module.exports = router;

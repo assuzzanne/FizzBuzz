@@ -1,6 +1,8 @@
 module.exports = function compute(int1, int2, limit, str1, str2) {
-  // validation
-  // gestion d'erreur
+  if (!isParameterValid(int1, int2, limit, str1, str2)) {
+    return console.error("One or more parameter values are not valid!");
+  }
+
   let list = [];
 
   for (let i = 1; i < limit; i++) {
@@ -16,3 +18,14 @@ module.exports = function compute(int1, int2, limit, str1, str2) {
   }
   return list.toString();
 };
+
+function isParameterValid(int1, int2, limit, str1, str2) {
+  if (
+    typeof int1 === "number" &&
+    typeof int2 === "number" &&
+    typeof limit === "number" &&
+    typeof str1 === "string" &&
+    typeof str2 === "string"
+  )
+    return true;
+}
