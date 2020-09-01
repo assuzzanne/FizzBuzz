@@ -9,13 +9,13 @@ const { assert } = require("chai");
 
 chai.use(chaiHttp);
 
-describe("Request", () => {
+describe("customisedFizzBuzz", () => {
   beforeEach(async () => {
     await Request.remove();
   });
 
-  describe("/GET customisedFizzBuzz", () => {
-    it("it should GET a list of strings", async () => {
+  describe("/GET route", () => {
+    it("it should return a list of strings", async () => {
       const req = {
         params: {
           int1: "3",
