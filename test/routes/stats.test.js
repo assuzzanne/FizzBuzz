@@ -1,12 +1,16 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const mongoose = require('mongoose');
 
 const app = require("../../app");
-const Request = require("../../models/request");
 
 chai.use(chaiHttp);
 
 describe("Stats", () => {
+  after(async () => {
+    await mongoose.disconnect();
+  });
+
   describe("/GET route", () => {
     it("it should return data about the most used request", async () => {
       const res = await chai
