@@ -3,7 +3,7 @@ const Request = require("../models/request");
 module.exports = async function format() {
   const mostUsedRequest = await Request.find().sort({ counter: -1 }).limit(1);
   if (!mostUsedRequest.length) {
-    return "Failed to find request!";
+    return "No request was found!";
   }
 
   const [{ params, counter }] = mostUsedRequest;
