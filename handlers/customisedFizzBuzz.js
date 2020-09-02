@@ -1,6 +1,6 @@
 module.exports = function compute(int1, int2, limit, str1, str2) {
   if (!isParameterValid(int1, int2, limit, str1, str2)) {
-    return console.error("One or more parameter values are not valid!");
+    return "One or more parameter values are not valid!";
   }
 
   let list = [];
