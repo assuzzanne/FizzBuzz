@@ -7,10 +7,6 @@ const Request = require("../../models/request");
 chai.use(chaiHttp);
 
 describe("customisedFizzBuzz", () => {
-  beforeEach(async () => {
-    await Request.remove();
-  });
-
   describe("/GET route", () => {
     it("it should fail if a parameter is missing", async () => {
       const req = {
