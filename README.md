@@ -22,6 +22,10 @@ Download file, open and run `npm i`
 Then start the server with `npm start`  
 Run the unit tests with the following command `npm test`
 
+To test the first endpoint, you can copy and paste this url http://localhost:3000/customisedFizzBuzz/3/5/100/bella/donna into your browser search bar.
+
+To test the second endpoint, you can copy and paste this url http://localhost:3000/stats into your browser search bar.
+
 # Author
 Aude Rouaux
 
