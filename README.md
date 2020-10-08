@@ -1,4 +1,4 @@
-# le-bon-coin-test-technique
+# FizzBuzz
 
 **Exercise: Write a simple fizz-buzz REST server**.
 
